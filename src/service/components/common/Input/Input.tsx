@@ -1,22 +1,10 @@
-import React, { useState } from 'react';
-import { CreateInputStateType } from './Input.interface';
+import React from 'react';
+import { InputPropsType } from './Input.interface';
 
-const Input = () => {
-  const [createInput, setCreateInput] = useState<CreateInputStateType>({
-    task: '',
-  });
-  const createTaskInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCreateInput({ ...createInput, [e.target.name]: e.target.value });
-  };
-
+const Input = ({ name, value, placeholder, onChange }: InputPropsType) => {
   return (
     <div>
-      <input
-        name="task"
-        value={createInput.task}
-        placeholder="Task Name"
-        onChange={createTaskInput}
-      />
+      <input name={name} value={value} placeholder={placeholder} onChange={onChange} />
     </div>
   );
 };

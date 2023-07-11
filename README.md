@@ -17,7 +17,11 @@ Which library should I use? MUi?
 
 3. Redux Setup
 
----
+////////////////////////////////////////////////////////////////////
 
-1. CreateTodo
-   - Button -> Showing the input after click -> Resuable Input
+1. CreateTodo - Create
+
+   - Button -> Showing the input after click -> Resuable Input -> redux -> done
+
+2. ShowTodo - Read
+   -

@@ -27,7 +27,7 @@ const CreateTodo = () => {
     if (!task) {
       setShowAlert(true);
     } else {
-      dispatch(createTodoAction({ ...createInput, id: getNanoid() }));
+      dispatch(createTodoAction({ ...createInput, id: getNanoid(), status: true }));
       setShowAlert(false);
     }
     setCreateInput({ ...createInput, task: '' });

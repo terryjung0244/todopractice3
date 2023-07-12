@@ -1,0 +1,7 @@
+tbody tr {
+  counter-increment: addNumber;
+}
+
+tbody tr td:first-child:before {
+  content: counter(addNumber);
+}

@@ -1,11 +1,13 @@
 import React from 'react';
 import CreateTodo from 'service/components/createTodo/CreateTodo';
+import ShowTodo from 'service/components/showTodo/ShowTodo';
 
 const App = () => {
   return (
     <div>
-      <div>Todo List</div>
+      <h2>Todo List</h2>
       <CreateTodo />
+      <ShowTodo />
     </div>
   );
 };

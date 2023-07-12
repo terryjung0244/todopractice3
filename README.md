@@ -21,7 +21,6 @@ Which library should I use? MUi?
 
 1. CreateTodo - Create
 
-   - Button -> Showing the input after click -> Resuable Input -> redux -> done
+   - Button -> Showing the input after click -> Resuable Input(input, Alert) -> redux -> done
 
-2. ShowTodo - Read
-   -
+2. ## ShowTodo - Read

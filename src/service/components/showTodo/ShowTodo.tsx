@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
 import './ShowTodo.css';
 import { TodoType } from 'service/model/todo';
-import { useAppSelector } from 'service/store';
+import { useAppDispatch, useAppSelector } from 'service/store';
 import { AiFillEdit } from 'react-icons/ai';
 import { IoTrashOutline } from 'react-icons/io5';
 import Input from '../common/Input/Input';
 import { UpdateInputStateType } from './ShowTodo.interface';
+import {
+  sendSingleTodoIdAction,
+  updateTodoAction,
+} from 'service/redux/action/todoAction';
+import Alert from '../common/alert/Alert';
 
 const ShowTodo = () => {
+  const dispatch = useAppDispatch();
+  const [showAlert, setShowAlert] = useState<boolean>(false);
   const [showUpdateInput, setShowUpdateInput] = useState<boolean>(false);
   const [updateInput, setUpdateInput] = useState<UpdateInputStateType>({
     task: '',
   });
-  const { todoList } = useAppSelector((state) => state.todoReducer);
+  const { todoList, selectedIdList } = useAppSelector(
+    (state) => state.todoReducer,
+  );
 
-  const updateTodo = (id: string) => {
-    console.log(id);
+  const editButton = (id: string) => {
+    dispatch(sendSingleTodoIdAction(id));
     setShowUpdateInput(true);
   };
 
@@ -26,13 +35,25 @@ const ShowTodo = () => {
   const updateNewTask = () => {
     // validation
     const { task } = updateInput;
-    console.log(task);
+    if (!task) {
+      setShowAlert(true);
+    } else {
+      console.log(updateInput);
+      dispatch(updateTodoAction({ ...updateInput }));
+      setShowAlert(false);
+    }
+    setUpdateInput({ ...updateInput, task: '' });
   };
 
-  console.log(todoList);
+  console.log(selectedIdList);
 
   return (
     <div>
+      <div>
+        {showAlert && (
+          <Alert width="150px" height="20px" border="1px solid red" />
+        )}
+      </div>
       <div>
         {showUpdateInput && (
           <div>
@@ -63,8 +84,8 @@ const ShowTodo = () => {
                 <td>{todo.id}</td>
                 <td>{todo.task}</td>
                 <td>{todo.status}</td>
-                <td onClick={() => updateTodo(todo.id)}>
-                  Update
+                <td onClick={() => editButton(todo.id)}>
+                  Edit
                   <AiFillEdit />
                 </td>
                 <td>

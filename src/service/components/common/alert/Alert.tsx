@@ -7,7 +7,7 @@ interface AlertContainerPropsType {
 }
 
 const Alert = ({ width, height, border }: AlertContainerPropsType) => {
-  return <div style={{ width, height, border }}>Alert! Create your task</div>;
+  return <div style={{ width, height, border }}>Alert! Fill in the blank</div>;
 };
 
 export default Alert;

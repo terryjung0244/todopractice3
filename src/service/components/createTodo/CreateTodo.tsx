@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './CreateTodo.css';
 import Input from '../common/Input/Input';
 import { CreateInputStateType } from './CreateTodo.interface';
 import { useAppDispatch } from 'service/store';
@@ -27,25 +28,38 @@ const CreateTodo = () => {
     if (!task) {
       setShowAlert(true);
     } else {
-      dispatch(createTodoAction({ ...createInput, id: getNanoid(), status: true }));
+      dispatch(
+        createTodoAction({ ...createInput, id: getNanoid(), status: true }),
+      );
       setShowAlert(false);
     }
     setCreateInput({ ...createInput, task: '' });
   };
   return (
-    <div>
-      <button onClick={addTaskButton}>Add Task</button>
-      <div>{showAlert && <Alert width="150px" height="20px" border="1px solid red" />}</div>
+    <div className="createTodoMain">
+      <button className="addTaskButton" onClick={addTaskButton}>
+        Add Task
+      </button>
+      <div>
+        {showAlert && (
+          <Alert width="150px" height="20px" border="1px solid red" />
+        )}
+      </div>
       <div>
         {showInput && (
-          <div>
+          <div className="inputAndButton">
             <Input
+              className="input"
               name="task"
               value={createInput.task}
               placeholder="Task Name"
               onChange={createTaskInput}
             />
-            <button onClick={addNewTaskBtn}>Add Task</button>
+            <div>
+              <button className="inputAddTaskButton" onClick={addNewTaskBtn}>
+                Add Task
+              </button>
+            </div>
           </div>
         )}
       </div>

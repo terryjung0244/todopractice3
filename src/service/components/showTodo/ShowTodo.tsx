@@ -7,6 +7,7 @@ import { IoTrashOutline } from 'react-icons/io5';
 import Input from '../common/Input/Input';
 import { UpdateInputStateType } from './ShowTodo.interface';
 import {
+  deleteTodoAction,
   sendSingleTodoIdAction,
   updateTodoAction,
 } from 'service/redux/action/todoAction';
@@ -45,10 +46,15 @@ const ShowTodo = () => {
     setUpdateInput({ ...updateInput, task: '' });
   };
 
+  const deleteButton = (id: string) => {
+    dispatch(sendSingleTodoIdAction(id));
+    dispatch(deleteTodoAction());
+  };
+
   console.log(selectedIdList);
 
   return (
-    <div>
+    <div style={{ border: '1px solid blue' }}>
       <div>
         {showAlert && (
           <Alert width="150px" height="20px" border="1px solid red" />
@@ -58,6 +64,7 @@ const ShowTodo = () => {
         {showUpdateInput && (
           <div>
             <Input
+              className=""
               name="task"
               value={updateInput.task}
               placeholder="Update"
@@ -88,7 +95,7 @@ const ShowTodo = () => {
                   Edit
                   <AiFillEdit />
                 </td>
-                <td>
+                <td onClick={() => deleteButton(todo.id)}>
                   Delete
                   <IoTrashOutline />
                 </td>

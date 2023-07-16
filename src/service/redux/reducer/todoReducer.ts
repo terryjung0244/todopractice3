@@ -37,13 +37,13 @@ export const todoReducer: Reducer<TodoReducerStateType, TodoActionsType> = (
         break;
       // * UPDATE *
       case UPDATE_TODO:
-        const { task } = action.payload;
-
+        const { task, status } = action.payload;
         draft.selectedIdList.forEach((id: string) => {
           let index = draft.todoList.findIndex(
             (todo: TodoType) => id === todo.id,
           );
           draft.todoList[index].task = task;
+          draft.todoList[index].status = status;
           draft.selectedIdList = [];
         });
         break;

@@ -9,15 +9,13 @@ const Input = ({
   onChange,
 }: InputPropsType) => {
   return (
-    <div>
-      <input
-        className={className}
-        name={name}
-        value={value}
-        placeholder={placeholder}
-        onChange={onChange}
-      />
-    </div>
+    <input
+      className={className}
+      name={name}
+      value={value}
+      placeholder={placeholder}
+      onChange={onChange}
+    />
   );
 };
 

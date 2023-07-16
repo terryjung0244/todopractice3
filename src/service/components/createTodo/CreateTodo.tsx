@@ -29,7 +29,7 @@ const CreateTodo = () => {
       setShowAlert(true);
     } else {
       dispatch(
-        createTodoAction({ ...createInput, id: getNanoid(), status: true }),
+        createTodoAction({ ...createInput, id: getNanoid(), status: 'Todo' }),
       );
       setShowAlert(false);
     }
@@ -48,6 +48,7 @@ const CreateTodo = () => {
       <div>
         {showInput && (
           <div className="inputAndButton">
+            {/* <input className="input"></input> */}
             <Input
               className="input"
               name="task"
@@ -55,11 +56,10 @@ const CreateTodo = () => {
               placeholder="Task Name"
               onChange={createTaskInput}
             />
-            <div>
-              <button className="inputAddTaskButton" onClick={addNewTaskBtn}>
-                Add Task
-              </button>
-            </div>
+
+            <button className="inputAddTaskButton" onClick={addNewTaskBtn}>
+              Add Task
+            </button>
           </div>
         )}
       </div>

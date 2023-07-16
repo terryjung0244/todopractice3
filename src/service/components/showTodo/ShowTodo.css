@@ -1,7 +1,21 @@
-tbody tr {
+/* tbody tr {
   counter-increment: addNumber;
 }
 
 tbody tr td:first-child:before {
   content: counter(addNumber);
+} */
+
+table,
+th,
+td {
+  border: 1px solid;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th,
+td {
+  padding: 10px;
 }

@@ -13,6 +13,27 @@ import {
 } from 'service/redux/action/todoAction';
 import Alert from '../common/alert/Alert';
 
+export const STATUS_MODEL: any = {
+  TODO: {
+    content: 'Todo',
+    style: {
+      color: 'red',
+    },
+  },
+  UPDATED: {
+    content: 'Updated',
+    style: {
+      color: 'salmon',
+    },
+  },
+  COMPLETED: {
+    content: 'Completed',
+    style: {
+      color: 'blue',
+    },
+  },
+};
+
 const ShowTodo = () => {
   const dispatch = useAppDispatch();
   const [showAlert, setShowAlert] = useState<boolean>(false);
@@ -26,6 +47,7 @@ const ShowTodo = () => {
 
   const editButton = (id: string) => {
     dispatch(sendSingleTodoIdAction(id));
+
     setShowUpdateInput(true);
   };
 
@@ -40,7 +62,7 @@ const ShowTodo = () => {
       setShowAlert(true);
     } else {
       console.log(updateInput);
-      dispatch(updateTodoAction({ ...updateInput }));
+      dispatch(updateTodoAction({ ...updateInput, status: 'Updated' }));
       setShowAlert(false);
     }
     setUpdateInput({ ...updateInput, task: '' });
@@ -54,7 +76,7 @@ const ShowTodo = () => {
   console.log(selectedIdList);
 
   return (
-    <div style={{ border: '1px solid blue' }}>
+    <div>
       <div>
         {showAlert && (
           <Alert width="150px" height="20px" border="1px solid red" />
@@ -85,18 +107,23 @@ const ShowTodo = () => {
           </tr>
         </thead>
         <tbody>
-          {todoList.map((todo: TodoType) => {
+          {todoList.map((todo: TodoType, index: number) => {
+            console.log(todo.status);
             return (
               <tr key={todo.id}>
-                <td>{todo.id}</td>
+                <td>
+                  {index + 1}.{todo.id}
+                </td>
                 <td>{todo.task}</td>
-                <td>{todo.status}</td>
+                <td
+                  style={STATUS_MODEL[`${todo.status}`.toUpperCase()]['style']}
+                >
+                  {STATUS_MODEL['UPDATED']['content']}
+                </td>
                 <td onClick={() => editButton(todo.id)}>
-                  Edit
                   <AiFillEdit />
                 </td>
                 <td onClick={() => deleteButton(todo.id)}>
-                  Delete
                   <IoTrashOutline />
                 </td>
               </tr>
@@ -109,3 +136,24 @@ const ShowTodo = () => {
 };
 
 export default ShowTodo;
+
+// export const STATUS_MODEL: any = {
+//   TODO: {
+//     content: 'Todo',
+//     style: {
+//       color: 'red',
+//     },
+//   },
+//   UPDATED: {
+//     content: 'Updated',
+//     style: {
+//       color: 'green',
+//     },
+//   },
+//   COMPLETED: {
+//     content: 'Completed',
+//     style: {
+//       color: 'blue',
+//     },
+//   },
+// };

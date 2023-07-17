@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ShowTodo.css';
+import styles from './ShowTodo.module.css';
 import { TodoType } from 'service/model/todo';
 import { useAppDispatch, useAppSelector } from 'service/store';
 import { AiFillEdit } from 'react-icons/ai';
@@ -12,18 +12,20 @@ import {
   updateTodoAction,
 } from 'service/redux/action/todoAction';
 import Alert from '../common/alert/Alert';
+import SelectTodo from '../selectTodo/SelectTodo';
 
 export const STATUS_MODEL: any = {
   TODO: {
     content: 'Todo',
     style: {
-      color: 'red',
+      // color: 'red',
     },
   },
   UPDATED: {
     content: 'Updated',
     style: {
-      color: 'salmon',
+      // border: '1px solid black',
+      color: '#F97B22',
     },
   },
   COMPLETED: {
@@ -84,53 +86,71 @@ const ShowTodo = () => {
       </div>
       <div>
         {showUpdateInput && (
-          <div>
+          <div className={styles.updateInputMain}>
             <Input
-              className=""
+              className={styles.updateInputSub}
               name="task"
               value={updateInput.task}
               placeholder="Update"
               onChange={updateTaskInput}
             />
-            <button onClick={updateNewTask}>Update</button>
+            <button className={styles.buttonContainer} onClick={updateNewTask}>
+              Update
+            </button>
+            <SelectTodo />
           </div>
         )}
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Task Name</th>
-            <th>Status</th>
-            <th>Update</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {todoList.map((todo: TodoType, index: number) => {
-            console.log(todo.status);
-            return (
-              <tr key={todo.id}>
-                <td>
-                  {index + 1}.{todo.id}
-                </td>
-                <td>{todo.task}</td>
-                <td
-                  style={STATUS_MODEL[`${todo.status}`.toUpperCase()]['style']}
-                >
-                  {STATUS_MODEL['UPDATED']['content']}
-                </td>
-                <td onClick={() => editButton(todo.id)}>
-                  <AiFillEdit />
-                </td>
-                <td onClick={() => deleteButton(todo.id)}>
-                  <IoTrashOutline />
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div className={styles.tableMain}>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>
+                <input style={{ width: '20px' }} />
+              </th>
+              <th>#</th>
+              <th>Task Name</th>
+              <th>Status</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {todoList.map((todo: TodoType, index: number) => {
+              console.log(todo.status);
+              return (
+                <tr key={todo.id}>
+                  <td>
+                    <input style={{ width: '20px' }} />
+                  </td>
+                  <td className={styles.number}>{index + 1}</td>
+                  <td className={styles.taskName}>{todo.task}</td>
+                  <td
+                    style={
+                      STATUS_MODEL[`${todo.status}`.toUpperCase()]['style']
+                    }
+                    className={styles.updatedContainer}
+                  >
+                    {STATUS_MODEL[`${todo.status}`.toUpperCase()]['content']}
+                  </td>
+                  <td
+                    className={styles.updateIconButton}
+                    onClick={() => editButton(todo.id)}
+                  >
+                    <AiFillEdit />
+                  </td>
+                  <td
+                    className={styles.deleteIconButton}
+                    onClick={() => deleteButton(todo.id)}
+                  >
+                    <IoTrashOutline />
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

@@ -21,6 +21,7 @@ export const todoReducer: Reducer<TodoReducerStateType, TodoActionsType> = (
     switch (action.type) {
       // * CREATE *
       case CREATE_TODO:
+        // console.log(action.payload);
         draft.todoList.push(action.payload);
         break;
 

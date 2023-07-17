@@ -1,11 +1,17 @@
 import React from 'react';
 import { InputPropsType } from './Input.interface';
 
+// const inputCss = {
+//   height: '50px',
+//   width: '300px',
+// };
+
 const Input = ({
   className,
   name,
   value,
   placeholder,
+
   onChange,
 }: InputPropsType) => {
   return (

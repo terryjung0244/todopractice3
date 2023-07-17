@@ -42,7 +42,16 @@ const CreateTodo = () => {
       </button>
       <div>
         {showAlert && (
-          <Alert width="150px" height="20px" border="1px solid red" />
+          <Alert
+            width="200px"
+            height="30px"
+            border="1px solid red"
+            borderRadius="5px"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            backgroundColor="#FF7F50"
+          />
         )}
       </div>
       <div>

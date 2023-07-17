@@ -13,6 +13,7 @@ import {
 } from 'service/redux/action/todoAction';
 import Alert from '../common/alert/Alert';
 import SelectTodo from '../selectTodo/SelectTodo';
+import { log } from 'console';
 
 export const STATUS_MODEL: any = {
   TODO: {
@@ -75,6 +76,11 @@ const ShowTodo = () => {
     dispatch(deleteTodoAction());
   };
 
+  const inputCheckBoxEachBox = (id: string) => {
+    dispatch(sendSingleTodoIdAction(id));
+  };
+
+  console.log(todoList);
   console.log(selectedIdList);
 
   return (
@@ -97,16 +103,23 @@ const ShowTodo = () => {
             <button className={styles.buttonContainer} onClick={updateNewTask}>
               Update
             </button>
-            <SelectTodo />
           </div>
         )}
       </div>
+      <div className={styles.selectContainer}>
+        <SelectTodo />
+      </div>
+
       <div className={styles.tableMain}>
         <table className={styles.table}>
           <thead>
             <tr>
               <th>
-                <input style={{ width: '20px' }} />
+                <input
+                  className={styles.inputCheckBoxContainer}
+                  type="checkBox"
+                  checked={false}
+                />
               </th>
               <th>#</th>
               <th>Task Name</th>
@@ -117,14 +130,26 @@ const ShowTodo = () => {
           </thead>
           <tbody>
             {todoList.map((todo: TodoType, index: number) => {
-              console.log(todo.status);
+              // console.log(todo.status);
               return (
                 <tr key={todo.id}>
                   <td>
-                    <input style={{ width: '20px' }} />
+                    <input
+                      className={styles.inputCheckBoxContainer}
+                      type="checkBox"
+                      checked={selectedIdList.includes(todo.id)}
+                      onChange={() => inputCheckBoxEachBox(todo.id)}
+                    />
                   </td>
                   <td className={styles.number}>{index + 1}</td>
-                  <td className={styles.taskName}>{todo.task}</td>
+                  <td
+                    className={styles.taskName}
+                    style={{
+                      textDecoration: todo.isDone ? 'line-through' : 'unset',
+                    }}
+                  >
+                    {todo.task}
+                  </td>
                   <td
                     style={
                       STATUS_MODEL[`${todo.status}`.toUpperCase()]['style']

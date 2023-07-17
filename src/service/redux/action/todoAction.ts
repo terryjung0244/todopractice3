@@ -3,12 +3,20 @@ import { TodoType } from 'service/model/todo';
 import {
   CreateTodoActionType,
   DeleteTodoActionType,
+  MarkAsDoneActionType,
+  MarkAsNotDoneActionType,
   SendSingleTodoIdActionType,
   UpdateTodoActionType,
 } from './todoAction.interface';
 
-const { CREATE_TODO, SEND_SINGLE_TODO_ID, UPDATE_TODO, DELETE_TODO } =
-  TODO_CONST_ACTIONS;
+const {
+  CREATE_TODO,
+  SEND_SINGLE_TODO_ID,
+  UPDATE_TODO,
+  DELETE_TODO,
+  MARK_AS_DONE,
+  MARK_AS_NOT_DONE,
+} = TODO_CONST_ACTIONS;
 
 export const createTodoAction = (input: TodoType): CreateTodoActionType => {
   return {
@@ -38,6 +46,20 @@ export const updateTodoAction = (
 export const deleteTodoAction = (): DeleteTodoActionType => {
   return {
     type: DELETE_TODO,
+    payload: null,
+  };
+};
+
+export const markAsDoneAction = (): MarkAsDoneActionType => {
+  return {
+    type: MARK_AS_DONE,
+    payload: null,
+  };
+};
+
+export const markAsNotDoneAction = (): MarkAsNotDoneActionType => {
+  return {
+    type: MARK_AS_NOT_DONE,
     payload: null,
   };
 };

@@ -3,7 +3,6 @@ import CreateTodo from 'service/components/createTodo/CreateTodo';
 import ShowTodo from 'service/components/showTodo/ShowTodo';
 import Grid from '@mui/material/Grid';
 import './App.css';
-import SelectTodo from 'service/components/selectTodo/SelectTodo';
 
 const App = () => {
   return (

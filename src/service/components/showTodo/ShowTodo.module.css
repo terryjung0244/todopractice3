@@ -47,14 +47,17 @@ td {
 
 .updateIconButton {
   color: #ff8551;
+  font-size: 20px;
+  /* border: 1px solid red; */
 }
 
 .deleteIconButton {
   color: #9bcdd2;
+  font-size: 20px;
 }
 
 .updateInputMain {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -75,4 +78,18 @@ td {
   width: 30%;
   border: 0.5px solid lightgray;
   border-radius: 0px 10px 10px 0px;
+}
+
+.inputCheckBoxContainer {
+  width: 20px;
+  height: 17px;
+  margin-top: 3px;
+  accent-color: #9bcdd2;
+}
+
+.selectContainer {
+  /* border: 1px solid red; */
+  width: 100%;
+  margin-top: 20px;
+  height: 30px;
 }

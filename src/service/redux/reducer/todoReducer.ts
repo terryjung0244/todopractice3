@@ -5,8 +5,14 @@ import { TodoActionsType } from '../action/todoAction.interface';
 import { TODO_CONST_ACTIONS } from 'service/const/actionConst';
 import { TodoType } from 'service/model/todo';
 
-const { CREATE_TODO, SEND_SINGLE_TODO_ID, UPDATE_TODO, DELETE_TODO } =
-  TODO_CONST_ACTIONS;
+const {
+  CREATE_TODO,
+  SEND_SINGLE_TODO_ID,
+  UPDATE_TODO,
+  DELETE_TODO,
+  MARK_AS_DONE,
+  MARK_AS_NOT_DONE,
+} = TODO_CONST_ACTIONS;
 
 const initialState: TodoReducerStateType = {
   todoList: [],
@@ -21,21 +27,21 @@ export const todoReducer: Reducer<TodoReducerStateType, TodoActionsType> = (
     switch (action.type) {
       // * CREATE *
       case CREATE_TODO:
-        // console.log(action.payload);
         draft.todoList.push(action.payload);
         break;
 
       // * SEND SINGLE TODO ID FOR UPDATE *
       case SEND_SINGLE_TODO_ID:
-        draft.selectedIdList.push(action.payload);
-        // const index = draft.selectedIdList.indexOf(action.payload);
-        // if (index === -1) {
-        //   draft.selectedIdList.push(action.payload);
-        // } else {
-        //   draft.selectedIdList.splice(index, 1);
-        // }
-        // break;
+        // console.log(action.payload);
+        // draft.selectedIdList.push(action.payload);
+        const index = draft.selectedIdList.indexOf(action.payload);
+        if (index === -1) {
+          draft.selectedIdList.push(action.payload);
+        } else {
+          draft.selectedIdList.splice(index, 1);
+        }
         break;
+
       // * UPDATE *
       case UPDATE_TODO:
         const { task, status } = action.payload;
@@ -48,6 +54,7 @@ export const todoReducer: Reducer<TodoReducerStateType, TodoActionsType> = (
           draft.selectedIdList = [];
         });
         break;
+
       // * DELETE *
       case DELETE_TODO:
         draft.selectedIdList.forEach((id: string) => {
@@ -59,6 +66,27 @@ export const todoReducer: Reducer<TodoReducerStateType, TodoActionsType> = (
           }
           draft.selectedIdList = [];
         });
+        break;
+
+      case MARK_AS_DONE:
+        const resultForMarkAsDone = draft.todoList.map((todo: TodoType) => {
+          return {
+            ...todo,
+            isDone: draft.selectedIdList.includes(todo.id) ? true : false,
+          };
+        });
+        draft.todoList = resultForMarkAsDone;
+
+        break;
+
+      case MARK_AS_NOT_DONE:
+        const resultForMarkAsNotDone = draft.todoList.map((todo: TodoType) => {
+          return {
+            ...todo,
+            isDone: draft.selectedIdList.includes(todo.id) ? false : true,
+          };
+        });
+        draft.todoList = resultForMarkAsNotDone;
         break;
 
       default:

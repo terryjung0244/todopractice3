@@ -1,0 +1,9 @@
+.selectContainer {
+  /* margin-left: 20px; */
+  border-radius: 6px;
+  background-color: #9bcdd2;
+  color: #faf0e4;
+  border: 1px solid lightgray;
+  height: 100%;
+  text-align: center;
+}

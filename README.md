@@ -33,3 +33,6 @@ Which library should I use? MUi?
 
 2. styles.className과 그냥 className으로 개별적으로 하는거랑
    차이가 느껴지지 않는다.
+
+3. map foreach 차이가 갑자기 와닫지가 않는다.
+4.

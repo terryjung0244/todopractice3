@@ -5,6 +5,7 @@ import {
   DeleteTodoActionType,
   MarkAsDoneActionType,
   MarkAsNotDoneActionType,
+  SendAllTodoIdActionType,
   SendSingleTodoIdActionType,
   UpdateTodoActionType,
 } from './todoAction.interface';
@@ -12,6 +13,7 @@ import {
 const {
   CREATE_TODO,
   SEND_SINGLE_TODO_ID,
+  SEND_ALL_TODO_ID,
   UPDATE_TODO,
   DELETE_TODO,
   MARK_AS_DONE,
@@ -31,6 +33,15 @@ export const sendSingleTodoIdAction = (
   return {
     type: SEND_SINGLE_TODO_ID,
     payload: id,
+  };
+};
+
+export const sendAllTodoAction = (
+  checked: boolean,
+): SendAllTodoIdActionType => {
+  return {
+    type: SEND_ALL_TODO_ID,
+    payload: checked,
   };
 };
 

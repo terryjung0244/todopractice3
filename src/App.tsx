@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import './App.css';
 
 const App = () => {
+  // const [showUpdateInput, setShowUpdateInput] = useState<boolean>(false);
   return (
     <div style={{ border: '' }} className="appMain">
       <Grid container rowSpacing={5}>
@@ -15,6 +16,10 @@ const App = () => {
           <CreateTodo />
         </Grid>
         <Grid item xs={12} md={12}>
+          {/* <ShowTodo
+            showUpdateInput={showUpdateInput}
+            setShowUpdateInput={setShowUpdateInput}
+          /> */}
           <ShowTodo />
         </Grid>
       </Grid>

@@ -8,6 +8,7 @@ import { TodoType } from 'service/model/todo';
 const {
   CREATE_TODO,
   SEND_SINGLE_TODO_ID,
+  SEND_ALL_TODO_ID,
   UPDATE_TODO,
   DELETE_TODO,
   MARK_AS_DONE,
@@ -17,6 +18,7 @@ const {
 const initialState: TodoReducerStateType = {
   todoList: [],
   selectedIdList: [],
+  // openUpdateComp: false,
 };
 
 export const todoReducer: Reducer<TodoReducerStateType, TodoActionsType> = (
@@ -30,8 +32,9 @@ export const todoReducer: Reducer<TodoReducerStateType, TodoActionsType> = (
         draft.todoList.push(action.payload);
         break;
 
-      // * SEND SINGLE TODO ID FOR UPDATE *
+      // * SEND SINGLE TODO ID *
       case SEND_SINGLE_TODO_ID:
+        console.log('11');
         // console.log(action.payload);
         // draft.selectedIdList.push(action.payload);
         const index = draft.selectedIdList.indexOf(action.payload);
@@ -39,6 +42,18 @@ export const todoReducer: Reducer<TodoReducerStateType, TodoActionsType> = (
           draft.selectedIdList.push(action.payload);
         } else {
           draft.selectedIdList.splice(index, 1);
+        }
+        break;
+
+      // * SEND ALL TODO ID *
+      case SEND_ALL_TODO_ID:
+        if (action.payload) {
+          const resultForSendAllId = draft.todoList.map(
+            (todo: TodoType) => todo.id,
+          );
+          draft.selectedIdList = resultForSendAllId;
+        } else {
+          draft.selectedIdList = [];
         }
         break;
 
@@ -94,3 +109,15 @@ export const todoReducer: Reducer<TodoReducerStateType, TodoActionsType> = (
     }
   });
 };
+
+// const people = ['hong', 'terry', 'jung'];
+// const newPeople = people.forEach((person: string) => {
+//   console.log(person);
+//   return person;
+// });
+// console.log(newPeople);
+// const newPeople2 = people.map((person: string) => {
+//   console.log(person);
+//   return person;
+// });
+// console.log(newPeople2);

@@ -5,6 +5,7 @@ import { TodoType } from 'service/model/todo';
 const {
   CREATE_TODO,
   SEND_SINGLE_TODO_ID,
+  SEND_ALL_TODO_ID,
   UPDATE_TODO,
   DELETE_TODO,
   MARK_AS_DONE,
@@ -19,6 +20,11 @@ export interface CreateTodoActionType {
 export interface SendSingleTodoIdActionType {
   type: typeof SEND_SINGLE_TODO_ID;
   payload: string;
+}
+
+export interface SendAllTodoIdActionType {
+  type: typeof SEND_ALL_TODO_ID;
+  payload: boolean;
 }
 
 export interface UpdateTodoActionType {
@@ -43,7 +49,7 @@ export interface MarkAsNotDoneActionType {
 export type TodoActionsType =
   | CreateTodoActionType
   | SendSingleTodoIdActionType
-  | UpdateTodoActionType
+  | SendAllTodoIdActionType
   | DeleteTodoActionType
   | MarkAsDoneActionType
   | MarkAsNotDoneActionType

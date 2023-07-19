@@ -21,6 +21,7 @@ const Input = ({
       value={value}
       placeholder={placeholder}
       onChange={onChange}
+      style={{ outline: 'none' }}
     />
   );
 };

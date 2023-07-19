@@ -7,7 +7,7 @@ import {
   markAsNotDoneAction,
 } from 'service/redux/action/todoAction';
 
-const { SELECT_MARK_AS_DONE, SELECT_MARK_AS_NOT_DONE } = SELECT_CONST;
+const { SELECT_MARK_AS_DONE, SELECT_MARK_AS_NOT_DONE, SELECT } = SELECT_CONST;
 
 const SelectTodo = () => {
   const dispatch = useAppDispatch();
@@ -29,8 +29,14 @@ const SelectTodo = () => {
 
   return (
     <>
-      <select className={styles.selectContainer} onChange={selectOption}>
-        <option>Select</option>
+      <select
+        className={styles.selectContainer}
+        onChange={selectOption}
+        defaultValue={SELECT}
+      >
+        <option value={SELECT} disabled hidden>
+          Select
+        </option>
         <option value={SELECT_MARK_AS_DONE}>Completed</option>
         <option value={SELECT_MARK_AS_NOT_DONE}>InCompleted</option>
       </select>

@@ -174,7 +174,7 @@ const ShowTodo = () => {
                     className={styles.updateIconButton}
                     onClick={() => editButton(todo.id)}
                   >
-                    <AiFillEdit style={{ border: '2px solid red' }} />
+                    <AiFillEdit />
                   </td>
                   <td
                     className={styles.deleteIconButton}

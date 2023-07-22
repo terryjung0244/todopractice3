@@ -9,10 +9,10 @@ const App = () => {
   return (
     <div style={{ border: '' }} className="appMain">
       <Grid container rowSpacing={5}>
-        <Grid item xs={12} md={6} className="titleMain">
+        <Grid item xs={12} md={12} className="titleMain">
           <h2 className="titleText">Todo List</h2>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={12}>
           <CreateTodo />
         </Grid>
         <Grid item xs={12} md={12}>

@@ -15,4 +15,5 @@ describe('service/util/nanoid', () => {
   });
 });
 
-// getNanoid()을 result에 담고, expect(result)의 값이 toStrictEqual(setNanoId) = 'ABCD1234' 이거야 라고 예측하는것
+// getNanoid()을 result에 담고, expect(result)의 값이
+// toStrictEqual(setNanoId) = 'ABCD1234' 이거야 라고 예측하는것

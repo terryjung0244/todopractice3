@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import './CreateTodo.css';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Input from '../common/Input/Input';
 import { CreateInputStateType } from './CreateTodo.interface';
 import { useAppDispatch } from 'service/store';
 import { createTodoAction } from 'service/redux/action/todoAction';
 import { getNanoid } from 'service/util/nanoid';
 import Alert from '../common/alert/Alert';
+import Button from '../common/button/Button';
 
 const CreateTodo = () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
+
   const dispatch = useAppDispatch();
   const [showInput, setShowInput] = useState<boolean>(false);
   const [showAlert, setShowAlert] = useState<boolean>(false);
@@ -52,10 +58,10 @@ const CreateTodo = () => {
               placeholder="Task Name"
               onChange={createTaskInput}
             />
-
-            <button className="inputAddTaskButton" onClick={addNewTaskBtn}>
+            <Button dataTestId="" onClick={addNewTaskBtn} text="Add Task" />
+            {/* <button className="inputAddTaskButton" onClick={addNewTaskBtn}>
               Add Task
-            </button>
+            </button> */}
           </div>
         )}
       </div>

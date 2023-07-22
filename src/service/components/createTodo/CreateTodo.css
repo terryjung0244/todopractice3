@@ -1,5 +1,5 @@
 .createTodoMain {
-  /* border: 1px solid purple; */
+  border: 1px solid purple;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

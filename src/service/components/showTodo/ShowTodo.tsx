@@ -14,6 +14,7 @@ import {
 } from 'service/redux/action/todoAction';
 import Alert from '../common/alert/Alert';
 import SelectTodo from '../selectTodo/SelectTodo';
+import Button from '../common/button/Button';
 
 export const STATUS_MODEL: any = {
   TODO: {
@@ -108,9 +109,15 @@ const ShowTodo = () => {
               placeholder="Update"
               onChange={updateTaskInput}
             />
-            <button className={styles.buttonContainer} onClick={updateNewTask}>
+            <Button
+              dataTestId=""
+              height="70px"
+              onClick={updateNewTask}
+              text="Update"
+            />
+            {/* <button className={styles.buttonContainer} onClick={updateNewTask}>
               Update
-            </button>
+            </button> */}
           </div>
         )}
       </div>

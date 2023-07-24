@@ -3,7 +3,7 @@ import React from 'react';
 export interface ButtonPropsType {
   width?: string;
   height?: string;
-  dataTestId: string;
+  dataTestId?: string;
   onClick: () => void;
   text: string;
 }

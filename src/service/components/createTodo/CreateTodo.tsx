@@ -9,11 +9,11 @@ import { createTodoAction } from 'service/redux/action/todoAction';
 import { getNanoid } from 'service/util/nanoid';
 import Alert from '../common/alert/Alert';
 import Button from '../common/button/Button';
+import { match } from 'assert';
 
 const CreateTodo = () => {
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('md'));
-
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
   const dispatch = useAppDispatch();
   const [showInput, setShowInput] = useState<boolean>(false);
   const [showAlert, setShowAlert] = useState<boolean>(false);
@@ -42,8 +42,12 @@ const CreateTodo = () => {
     setCreateInput({ ...createInput, task: '' });
   };
   return (
-    <div className="createTodoMain">
-      <button className="addTaskButton" onClick={addTaskButton}>
+    <div className="createTodoMain" style={{ display: 'flex' }}>
+      <button
+        className="addTaskButton"
+        onClick={addTaskButton}
+        style={{ width: matches ? '800px' : '200px' }}
+      >
         Add Task
       </button>
       <div>{showAlert && <Alert width="200px" height="30px" />}</div>

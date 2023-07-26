@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import './CreateTodo.css';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Input from '../common/Input/Input';
 import { CreateInputStateType } from './CreateTodo.interface';
 import { useAppDispatch } from 'service/store';
@@ -9,11 +7,11 @@ import { createTodoAction } from 'service/redux/action/todoAction';
 import { getNanoid } from 'service/util/nanoid';
 import Alert from '../common/alert/Alert';
 import Button from '../common/button/Button';
-import { match } from 'assert';
+import { useMediaQueryFuncForDownSm } from 'service/util/useMediaQuery';
 
 const CreateTodo = () => {
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+  const matches = useMediaQueryFuncForDownSm();
+  // const matchesForMdUp = useMediaQueryForMdUp();
   const dispatch = useAppDispatch();
   const [showInput, setShowInput] = useState<boolean>(false);
   const [showAlert, setShowAlert] = useState<boolean>(false);
@@ -41,21 +39,23 @@ const CreateTodo = () => {
     }
     setCreateInput({ ...createInput, task: '' });
   };
+
   return (
-    <div className="createTodoMain" style={{ display: 'flex' }}>
+    <div className="createTodoMain">
       <button
         className="addTaskButton"
         onClick={addTaskButton}
-        style={{ width: matches ? '800px' : '200px' }}
+        style={{ width: matches ? '100%' : '500px' }}
       >
         Add Task
       </button>
       <div>{showAlert && <Alert width="200px" height="30px" />}</div>
-      <div>
+      <div style={{ width: matches ? '100%' : '500px' }}>
         {showInput && (
           <div className="inputAndButton">
             {/* <input className="input"></input> */}
             <Input
+              dataTestId=""
               className="input"
               name="task"
               value={createInput.task}

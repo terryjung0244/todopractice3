@@ -24,8 +24,11 @@ td {
 }
 
 .tableMain {
-  /* border: 1px solid red; */
+  border: 1px solid red;
   margin-top: 10px;
+  width: '500px';
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 .deleteCon {

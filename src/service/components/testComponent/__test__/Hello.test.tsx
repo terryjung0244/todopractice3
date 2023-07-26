@@ -6,6 +6,7 @@ import { render } from '@testing-library/react';
 const renderComponent = () => render(<Hello />);
 
 describe('components/testComponent/Hello', () => {
+  // 중간에 변수를 지정하면 그 다음에 it()에서 다른 값을 받아서 실행되기에 beforeEach을 사용한다.
   beforeEach(() => {
     console.log('111');
   });

@@ -11,11 +11,13 @@ const Input = ({
   name,
   value,
   placeholder,
+  dataTestId,
 
   onChange,
 }: InputPropsType) => {
   return (
     <input
+      data-testid={dataTestId}
       className={className}
       name={name}
       value={value}

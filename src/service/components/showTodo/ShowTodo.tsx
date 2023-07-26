@@ -15,6 +15,7 @@ import {
 import Alert from '../common/alert/Alert';
 import SelectTodo from '../selectTodo/SelectTodo';
 import Button from '../common/button/Button';
+import { useMediaQueryFuncForDownSm } from 'service/util/useMediaQuery';
 
 export const STATUS_MODEL: any = {
   TODO: {
@@ -40,6 +41,7 @@ export const STATUS_MODEL: any = {
 };
 
 const ShowTodo = () => {
+  const matches = useMediaQueryFuncForDownSm();
   const dispatch = useAppDispatch();
   const [showAlert, setShowAlert] = useState<boolean>(false);
   const [showUpdateInput, setShowUpdateInput] = useState<boolean>(false);
@@ -93,7 +95,16 @@ const ShowTodo = () => {
   console.log(selectedIdList);
 
   return (
-    <div>
+    <div
+      style={{
+        border: '1px solid blue',
+        maxWidth: '100%',
+        // display: 'flex',
+        // flexDirection: 'column',
+        // alignItems: 'center',
+        // justifyContent: 'center',
+      }}
+    >
       <div>
         {showAlert && (
           <Alert width="150px" height="20px" border="1px solid red" />
@@ -103,6 +114,7 @@ const ShowTodo = () => {
         {showUpdateInput && selectedIdList.length === 1 && (
           <div className={styles.updateInputMain}>
             <Input
+              dataTestId=""
               className={styles.updateInputSub}
               name="task"
               value={updateInput.task}

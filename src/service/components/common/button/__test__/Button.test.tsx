@@ -52,7 +52,7 @@ import { render, fireEvent } from '@testing-library/react';
 import Button from '../Button';
 import { ButtonPropsType } from '../Button';
 
-const renderComponent = (props: any) => render(<Button {...props} />);
+const renderComponent = (props: ButtonPropsType) => render(<Button {...props} />);
 
 describe('common/button', () => {
   const buttonClick = jest.fn(); // 온리 테스트만을 위한것. 아무것도 실행되지 않는다.
@@ -83,9 +83,9 @@ describe('common/button', () => {
   it('The button confirms that the click is executed', () => {
     const { getByTestId } = renderComponent(props);
     const button = getByTestId('TestBtn');
-    fireEvent.click(button); // 여기서 한번 실행했다.
+    fireEvent.click(button); // 여기서 한번 클릭 실행
     expect(buttonClick).toHaveBeenCalledTimes(1);
-    fireEvent.click(button);
+    fireEvent.click(button); // 한번 더 클릭 실행
     expect(buttonClick).toHaveBeenCalledTimes(2);
   });
 });

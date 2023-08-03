@@ -15,6 +15,7 @@ table {
 th {
   border-bottom: 2px solid black;
   padding-bottom: 10px;
+  min-width: 100px;
 }
 
 td {
@@ -29,6 +30,7 @@ td {
   width: '500px';
   overflow-x: auto;
   overflow-y: auto;
+  white-space: nowrap;
 }
 
 .deleteCon {

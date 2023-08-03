@@ -141,7 +141,7 @@ const ShowTodo = () => {
         <table className={styles.table}>
           <thead>
             <tr>
-              <th>
+              <th style={{ minWidth: '30px', border: '1px solid red' }}>
                 <input
                   className={styles.inputCheckBoxContainer}
                   type="checkBox"
